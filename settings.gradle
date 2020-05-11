@@ -1,0 +1,35 @@
+rootProject.name = 'microcloud-services'
+
+
+include 'microcloud-api-getway:microcloud-zuul'
+findProject(':microcloud-api-getway:microcloud-zuul')?.name = 'microcloud-zuul'
+
+include 'microcloud-rount:microcloud-rount-fegin'
+findProject(':microcloud-rount:microcloud-rount-fegin')?.name = 'microcloud-rount-fegin'
+
+
+include 'microcloud-rount:microcloud-rount-ribbon'
+findProject(':microcloud-rount:microcloud-rount-ribbon')?.name = 'microcloud-rount-ribbon'
+
+
+include 'microcloud-config:microcloud-config-reader'
+findProject(':microcloud-config:microcloud-config-reader')?.name = 'microcloud-config-reader'
+
+
+include 'microcloud-config:microcloud-config-reader-bus'
+findProject(':microcloud-config:microcloud-config-reader-bus')?.name = 'microcloud-config-reader-bus'
+
+
+include 'microcloud-config:microcloud-config-server'
+findProject(':microcloud-config:microcloud-config-server')?.name = 'microcloud-config-server'
+
+include 'microcloud-call-chain:microcloud-zipkin-server'
+findProject(':microcloud-call-chain:microcloud-zipkin-server')?.name = 'microcloud-zipkin-server'
+
+include 'microcloud-server:microcloud-eureka-server'
+findProject(':microcloud-config:microcloud-eureka-server')?.name = 'microcloud-eureka-server'
+
+
+include 'microcloud-server:microcloud-eureka-server-client'
+findProject(':microcloud-config:microcloud-eureka-server-client')?.name = 'microcloud-eureka-server-client'
+

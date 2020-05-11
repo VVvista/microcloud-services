@@ -1,0 +1,89 @@
+// 声明gradle构建脚本自身使用的依赖资源
+buildscript {
+
+    // 仓库
+    repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://repo.spring.io/libs-milestone/" }
+        mavenCentral()
+        jcenter()
+
+    }
+    // 依赖jar
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// 声明插件
+plugins {
+    id 'java'
+}
+
+// 引入其他配置文件
+apply from: 'version.gradle'
+
+// 所有项目配置声明
+allprojects{
+
+}
+// 子项目配置声明
+subprojects {
+    // 引入插件
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'idea'
+
+    // 项目版本，子项目自定义后可覆盖该配置项
+    group "$projectGroup"
+    version "$projectVersion"
+
+    // Java版本
+    sourceCompatibility = 1.8
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+    // java编译的时候缺省状态下会因为中文字符而失败
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+    // 声明源文件目录
+   sourceSets {
+        main {
+            java {
+                srcDirs = ['src/main/java']
+            }
+        }
+        test {
+            java {
+                srcDirs = ['src/test/java']
+            }
+        }
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://oss.sonatype.org/content/groups/public/" }
+        jcenter()
+        mavenCentral()
+    }
+
+    configurations {
+        // 排除 logback 依赖（使用 log4j2）
+        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+        implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'  // 添加 yml 依赖（用于识别 log4j2.yml 文件）
+        testCompile "org.springframework.boot:spring-boot-starter-test"
+    }
+
+    // 依赖声明
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+}

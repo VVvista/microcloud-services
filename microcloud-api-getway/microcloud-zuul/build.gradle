@@ -1,0 +1,6 @@
+description '服务网关'
+
+dependencies {
+    compile "org.springframework.cloud:spring-cloud-starter-zuul"
+    compile "org.springframework.cloud:spring-cloud-starter-eureka"
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="USE_RELEASE_OPTION" value="false" />
+    <bytecodeTargetLevel target="8">
+      <module name="microcloud-services.microcloud-call-chain.microcloud-zipin-clients.main" target="1.8" />
+      <module name="microcloud-services.microcloud-call-chain.microcloud-zipin-clients.test" target="1.8" />
+      <module name="microcloud-services.microcloud-call-chain.microcloud-zipin-server.main" target="1.8" />
+      <module name="microcloud-services.microcloud-call-chain.microcloud-zipin-server.test" target="1.8" />
+      <module name="microcloud-services.microcloud-call-chain.microcloud-zipkin-clients.main" target="1.8" />
+      <module name="microcloud-services.microcloud-call-chain.microcloud-zipkin-clients.microcloud-zipkin-clients.main" target="1.8" />
+      <module name="microcloud-services.microcloud-call-chain.microcloud-zipkin-clients.microcloud-zipkin-clients.test" target="1.8" />
+      <module name="microcloud-services.microcloud-call-chain.microcloud-zipkin-clients.test" target="1.8" />
+      <module name="microcloud-services.microcloud-call-chain.microcloud-zipkin-clientsv.main" target="1.8" />
+      <module name="microcloud-services.microcloud-call-chain.microcloud-zipkin-clientsv.test" target="1.8" />
+      <module name="microcloud-services.mod.main" target="1.8" />
+      <module name="microcloud-services.mod.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

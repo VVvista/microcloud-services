@@ -1,0 +1,6 @@
+// 自定义变量
+ext {
+    projectGroup = 'com.kt.game'
+    projectVersion = '1.0-SNAPSHOT'
+    SOURCE_COMPILER_LEVEL='1.8'
+}

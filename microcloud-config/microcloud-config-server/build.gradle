@@ -1,0 +1,5 @@
+description '集中配置管理'
+
+dependencies {
+    compile('org.springframework.cloud:spring-cloud-config-server')
+}
