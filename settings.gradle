@@ -1,6 +1,5 @@
 rootProject.name = 'microcloud-services'
 
-
 include 'microcloud-api-getway:microcloud-zuul'
 findProject(':microcloud-api-getway:microcloud-zuul')?.name = 'microcloud-zuul'
 
@@ -22,9 +21,6 @@ findProject(':microcloud-config:microcloud-config-reader-bus')?.name = 'microclo
 
 include 'microcloud-config:microcloud-config-server'
 findProject(':microcloud-config:microcloud-config-server')?.name = 'microcloud-config-server'
-
-include 'microcloud-call-chain:microcloud-zipkin-server'
-findProject(':microcloud-call-chain:microcloud-zipkin-server')?.name = 'microcloud-zipkin-server'
 
 include 'microcloud-server:microcloud-eureka-server'
 findProject(':microcloud-config:microcloud-eureka-server')?.name = 'microcloud-eureka-server'

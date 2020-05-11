@@ -1,6 +1,33 @@
-description '服务网关'
+apply plugin:'maven-publish'
 
 dependencies {
-    compile "org.springframework.cloud:spring-cloud-starter-zuul"
-    compile "org.springframework.cloud:spring-cloud-starter-eureka"
+    compile "org.springframework.cloud:spring-cloud-starter-netflix-zuul"
+    compile "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
+
+}
+
+jar {
+    manifest {// 配置META-INF/MANIFEST.MF文件
+        attributes 'Manifest-Version': 1.0 //jar版本，可选
+        attributes 'Main-Class': 'com.kt.game.ZuulApplication' //启动类全路径,可选
+    }
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } } // 收集compile类依赖
+}
+
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'org.gradle.sample'
+            artifactId = 'project1-sample'
+            version = '1.1'
+
+            from components.java
+        }
+    }
+}
+
+task t{
+    print "hello world"
 }

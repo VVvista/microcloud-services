@@ -3,7 +3,7 @@ description '消息总线'
 dependencies {
     compile "org.springframework.cloud:spring-cloud-starter-bus-amqp"
     compile "org.springframework.cloud:spring-cloud-starter-config"
-    compile "org.springframework.cloud:spring-cloud-starter-eureka"
+    compile "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
     /*
     compile "org.springframework.cloud:spring-retry"
     compile "org.springframework.cloud:spring-boot-starter-actuator"

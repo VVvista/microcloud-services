@@ -1,5 +1,6 @@
 description '服务注册中心'
 
+/*
 def env = System.getProperty("env") ?: "dev"
 sourceSets {
     main {
@@ -11,8 +12,9 @@ sourceSets {
 
 apply from: "src/main/profile/dev/profile-${env}.gradle"
 
+*/
 
 
 dependencies {
-    compile('org.springframework.cloud:spring-cloud-starter-eureka-server')
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server')
 }

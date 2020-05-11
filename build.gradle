@@ -5,85 +5,60 @@ buildscript {
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         maven { url "https://repo.spring.io/libs-milestone/" }
+        maven { url "https://plugins.gradle.org/m2/" }
         mavenCentral()
         jcenter()
-
     }
+
     // 依赖jar
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.9.RELEASE' //版本依赖管理插件
     }
 }
-
-// 声明插件
-plugins {
-    id 'java'
-}
-
-// 引入其他配置文件
 apply from: 'version.gradle'
 
 // 所有项目配置声明
-allprojects{
+allprojects {
+    // 项目版本
+    group "${projectGroup}"
+    version "${projectVersion}"
 
-}
-// 子项目配置声明
-subprojects {
     // 引入插件
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
-    apply plugin: 'idea'
-
-    // 项目版本，子项目自定义后可覆盖该配置项
-    group "$projectGroup"
-    version "$projectVersion"
+    apply plugin: 'io.spring.dependency-management'
 
     // Java版本
-    sourceCompatibility = 1.8
-
-    tasks.withType(JavaCompile) {
-        options.encoding = "UTF-8"
-    }
-    // java编译的时候缺省状态下会因为中文字符而失败
-    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
-
-    // 声明源文件目录
-   sourceSets {
-        main {
-            java {
-                srcDirs = ['src/main/java']
-            }
-        }
-        test {
-            java {
-                srcDirs = ['src/test/java']
-            }
-        }
-    }
+    sourceCompatibility = "${SOURCE_COMPILER_LEVEL}"  // 编译版本
+    targetCompatibility = "${SOURCE_COMPILER_LEVEL}"   // 执行版本
 
     repositories {
-        mavenCentral()
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         maven { url "https://oss.sonatype.org/content/groups/public/" }
-        jcenter()
         mavenCentral()
-    }
-
-    configurations {
-        // 排除 logback 依赖（使用 log4j2）
-        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        jcenter()
     }
 
     dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter-log4j2'
-        implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'  // 添加 yml 依赖（用于识别 log4j2.yml 文件）
         testCompile "org.springframework.boot:spring-boot-starter-test"
+      //  compile "org.springframework.boot:spring-boot-starter-parent:2.0.2.RELEASE"
+        compile "org.springframework.boot:spring-boot-starter-web"
+        testCompile 'junit:junit:4.12'
     }
 
-    // 依赖声明
+    // 版本依赖管理
     dependencyManagement {
         imports {
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+            mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
         }
     }
+
+    //在多模块下，不然编译失败，因为不会把依赖模块给打包。https://zhuanlan.zhihu.com/p/36102184
+    jar { enabled = true }
+    bootJar { enabled = false }
 }
+
+
+
