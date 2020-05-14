@@ -570,3 +570,9 @@ public class EurekaControllerApplication {
 }
 ```
 
+###  13.maven项目转Gradle
+本地安装配置Gradle环境，项目pom.xml文件目录下执行：
+```
+gradle init     # 根据pom.xml内容生成对应的gradle配置
+gradle build    # 开启gradle构建
+```
